@@ -9,31 +9,45 @@ import android.opengl.GLU;
 import android.opengl.GLSurfaceView;
 
 
-public class GL implements GLSurfaceView.Renderer {
+
+
+
+
+public class GL implements	Renderer {
+	private int 			glWidth;
+	private int				glHeight;
+	private boolean			SurfaceCreated;
+
 
 	public GL(){
+		SurfaceCreated		= false;
+		glWidth				= 1;
+		glHeight			= 1;
+	}
+ 
+ 
+	@Override
+ 	public void onSurfaceCreated(GL10 NOT_USED, EGLConfig config) {	
+		
+		SurfaceCreated		= true;
+	}
+ 
+ 
+     @Override
+    public void onSurfaceChanged(GL10 NOT_USED, int width, int height) {
 		
 	}
  
+ 
     @Override
-    public void onDrawFrame(GL10 gl) {
+    public void onDrawFrame(GL10 NOT_USED) {
 		
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT| GLES20.GL_DEPTH_BUFFER_BIT);
     }	
-    
-    @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
-		
-	}
-	
-	@Override
-	public void onSurfaceCreated(GL10 gl, EGLConfig config) {	
-		
-	}
-
+    	
+ 
     public abstract void onCreate(int width, int height, boolean contextLost);
-	public abstract void onDrawFrame(boolean firstDraw);
-	
+	public abstract void onDrawFrame(boolean firstDraw);	
 }
 
 
